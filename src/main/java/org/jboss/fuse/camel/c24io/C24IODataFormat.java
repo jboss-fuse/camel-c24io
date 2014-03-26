@@ -22,6 +22,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.apache.camel.CamelContext;
 import org.apache.camel.model.DataFormatDefinition;
 import org.apache.camel.spi.DataFormat;
 import org.apache.camel.util.ObjectHelper;
@@ -99,14 +100,14 @@ public class C24IODataFormat extends DataFormatDefinition {
     //-------------------------------------------------------------------------
 
     @Override
-    protected void configureDataFormat(DataFormat dataFormat) {
+    protected void configureDataFormat(DataFormat dataFormat, CamelContext camelContext) {
         Class<?> type = getElementType();
         if (type != null) {
-            setProperty(dataFormat, "elementType", type);
+            setProperty(camelContext, dataFormat, "elementType", type);
         }
         C24IOContentType content = getContentType();
         if (content != null) {
-            setProperty(dataFormat, "contentType", content);
+            setProperty(camelContext, dataFormat, "contentType", content);
         }
     }
 }
