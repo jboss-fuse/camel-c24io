@@ -95,23 +95,22 @@ from("activemq:SwiftQueue").
 
 The following example shows how to use C24IO using Spring XML; in this case it unmarshals the content of a JMS queue as XML using the C24IO data model; then marshals it using a tag/value pair.
 
-```
-  <camelContext id="camel" xmlns="http://activemq.apache.org/camel/schema/spring">
-    <route>
-      <from uri="activemq:MyInputQueue"/>
-      <unmarshal ref="myDocFormat"/>
-      <marshal ref="tagValueFormat"/>
-      <to uri="mqseries:MyOutputQueue"/>
-    </route>
-  </camelContext>
+    <camelContext id="camel" xmlns="http://activemq.apache.org/camel/schema/spring">
+      <route>
+        <from uri="activemq:MyInputQueue"/>
+        <unmarshal ref="myDocFormat"/>
+        <marshal ref="tagValueFormat"/>
+        <to uri="mqseries:MyOutputQueue"/>
+      </route>
+    </camelContext>
 
-  <bean id="myDocFormat" class="org.jboss.fuse.camel.c24io.C24IODataFormat">
-    <property name="elementTypeName" value="iso.std.iso.x20022.tech.xsd.pacs.x008.x001.x01.DocumentElement"/>
-  </bean>
+    <bean id="myDocFormat" class="org.jboss.fuse.camel.c24io.C24IODataFormat">
+      <property name="elementTypeName" value="iso.std.iso.x20022.tech.xsd.pacs.x008.x001.x01.DocumentElement"/>
+    </bean>
 
-  <bean id="tagValueFormat" class="org.jboss.fuse.camel.c24io.C24IODataFormat">
-    <property name="contentType" value="TagValuePair"/>
-  </bean>```
+    <bean id="tagValueFormat" class="org.jboss.fuse.camel.c24io.C24IODataFormat">
+      <property name="contentType" value="TagValuePair"/>
+    </bean>
 
 ### Content Types and auto discovery
 
@@ -128,17 +127,14 @@ e.g. you could support content posted with a MIME type of *application/xml* to i
 
 To use this module you need to use the [FUSE Mediation Router](http://fusesource.com/products/enterprise-camel) distribution. Or you could just add the following to your pom.xml, substituting the version number for the latest & greatest release.
 
-```
-<dependency>
-  <groupId>org.jboss.fuse.camel</groupId>
-  <artifactId>camel-c24io</artifactId>
-  <version>\${camel-version}</version>
-</dependency>
-```
+    <dependency>
+      <groupId>org.jboss.fuse.camel</groupId>
+      <artifactId>camel-c24io</artifactId>
+      <version>\${camel-version}</version>
+    </dependency>
 
 And ensure you are pointing at the maven repo
 
-```
     <repository>
       <id>fusesource-releases</id>
       <name>FuseSource Release Repository</name>
@@ -157,7 +153,6 @@ And ensure you are pointing at the maven repo
         <enabled>true</enabled>
       </releases>
     </repository>
-```
 
 [C24]: http:/c24.biz
 [DataFormat]: http://camel.apache.org/data-format.html
